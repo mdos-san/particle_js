@@ -4,8 +4,8 @@
 <script>
 	var canvas = document.getElementById("c");
 	var nbr = 10000;
-	var g = new Vector_2d(250, 250);
-	var f = new Vector_2d(250, 250);
+	var g = new Vector_2d(canvas.width / 2, canvas.height / 2);
+	var f = new Vector_2d(canvas.width / 2, canvas.height / 2);
 	var ctx = canvas.getContext("2d");
 	var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 	var particles = new Array(nbr);
@@ -38,8 +38,8 @@
 	{
 		for (var i = 0; i < nbr; ++i)
 		{
-			particles[i].vel.x = Math.random() * 100;
-			particles[i].vel.y = Math.random() * 100;
+			particles[i].vel.x = Math.random() * 50 - 25;
+			particles[i].vel.y = Math.random() * 50 - 25;
 		}
 	}
 
@@ -48,6 +48,18 @@
 	{
 		g.x = e.clientX;
 		g.y = e.clientY;
+	}
+	
+	document.addEventListener('keydown', merge);
+	function merge(e)
+	{
+		if (e.code == "Space")
+		{
+			for (var i = 0; i < nbr; ++i)
+			{
+				particles[i].vel.mul(0.75);
+			}
+		}
 	}
 
 </script>

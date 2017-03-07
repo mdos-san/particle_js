@@ -30,6 +30,10 @@ class Particle_2d
 		this.pos = pos;
 		this.vel = vel;
 		this.acc = acc;
+		this.color = "rgb(" +
+		   parseInt(Math.random() * 256) + ", " +
+		   parseInt(Math.random() * 256) + ", " +
+		   parseInt(Math.random() * 256) + ")"
 	}
 	apply_force(f)
 	{
@@ -38,13 +42,12 @@ class Particle_2d
 	update()
 	{
 		this.vel.add(this.acc);
-		this.vel.mul(0.99);
 		this.pos.add(this.vel);
 		this.acc.mul(0);
 	}
 	display(ctx)
 	{
 		ctx.fillStyle = "#ffffff";
-		ctx.fillRect(this.pos.x, this.pos.y, 1, 1);
+		ctx.fillRect(this.pos.x, this.pos.y, 3, 3);
 	}
 }
