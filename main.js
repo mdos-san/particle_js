@@ -4,6 +4,11 @@ class Vector_2d
 		this.x = x;
 		this.y = y;
 	}
+	add(v)
+	{
+		this.x += v.x;
+		this.y += v.y;
+	}
 }
 
 class Particle_2d
@@ -12,5 +17,9 @@ class Particle_2d
 		this.pos = pos;
 		this.vel = vel;
 		this.acc = acc;
+	}
+	apply_force(f)
+	{
+		this.acc.add(f);
 	}
 }
