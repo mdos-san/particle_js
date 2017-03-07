@@ -1,0 +1,35 @@
+<canvas id="c" width="500" height="500" style="border: 1px solid black;"></canvas>
+
+<script src="fct.js"></script>
+<script src="main.js"></script>
+<script>
+	var canvas = document.getElementById("c");
+	var g = new Vector_2d(250, 250);
+	var f = new Vector_2d(250, 250);
+	var ctx = canvas.getContext("2d");
+	var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+	var particles = new Array(1000);
+	for (var i = 0; i < 1000; ++i)
+	{
+		particles[i] = new Particle_2d(
+			new Vector_2d(Math.random() * 500, Math.random() * 500),
+			new Vector_2d(0, 0),
+			new Vector_2d(0, 0)
+		);
+	}
+	setInterval(main_loop, 16);
+	function main_loop()
+	{
+		ctx.fillStyle = "#000000";
+		ctx.fillRect(0, 0, 500, 500);
+		for (var i = 0; i < 1000; ++i)
+		{
+			f.x = g.x - particles[i].pos.x;
+			f.y = g.y - particles[i].pos.y;
+			particles[i].apply_force(f);
+			particles[i].acc.mul(1 / 1000);
+			particles[i].update();
+			particles[i].display(ctx);
+		}
+	}
+</script>

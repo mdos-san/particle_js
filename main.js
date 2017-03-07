@@ -33,10 +33,9 @@ class Particle_2d
 		this.pos.add(this.vel);
 		this.acc.mul(0);
 	}
-	display(data, size)
+	display(ctx)
 	{
-		data[this.pos.x * 4 + this.pos.y * size * 4] = 255;
-		data[this.pos.x * 4 + this.pos.y * size * 4 + 1] = 255;
-		data[this.pos.x * 4 + this.pos.y * size * 4 + 2] = 255;
+		ctx.fillStyle = "#ffffff";
+		ctx.fillRect(this.pos.x, this.pos.y, 1, 1);
 	}
 }
