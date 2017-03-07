@@ -5,3 +5,12 @@ class Vector_2d
 		this.y = y;
 	}
 }
+
+class Particle_2d
+{
+	constructor(pos, vel, acc) {
+		this.pos = pos;
+		this.vel = vel;
+		this.acc = acc;
+	}
+}
