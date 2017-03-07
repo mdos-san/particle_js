@@ -22,4 +22,11 @@ class Particle_2d
 	{
 		this.acc.add(f);
 	}
+	update()
+	{
+		this.vel.add(this.acc);
+		this.pos.add(this.vel);
+		this.acc.mul(0);
+
+	}
 }
