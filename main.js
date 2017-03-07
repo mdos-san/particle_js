@@ -9,6 +9,11 @@ class Vector_2d
 		this.x += v.x;
 		this.y += v.y;
 	}
+	mul(nb)
+	{
+		this.x *= nb;
+		this.y *= nb;
+	}
 }
 
 class Particle_2d
@@ -27,6 +32,5 @@ class Particle_2d
 		this.vel.add(this.acc);
 		this.pos.add(this.vel);
 		this.acc.mul(0);
-
 	}
 }
