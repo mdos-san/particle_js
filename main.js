@@ -14,6 +14,14 @@ class Vector_2d
 		this.x *= nb;
 		this.y *= nb;
 	}
+	norm()
+	{
+		var d;
+
+		d = Math.sqrt(this.x * this.x + this.y * this.y);
+		this.x /= d;
+		this.y /= d;
+	}
 }
 
 class Particle_2d
@@ -30,6 +38,7 @@ class Particle_2d
 	update()
 	{
 		this.vel.add(this.acc);
+		this.vel.mul(0.99);
 		this.pos.add(this.vel);
 		this.acc.mul(0);
 	}
