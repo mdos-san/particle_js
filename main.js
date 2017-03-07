@@ -33,4 +33,10 @@ class Particle_2d
 		this.pos.add(this.vel);
 		this.acc.mul(0);
 	}
+	display(data, size)
+	{
+		data[this.pos.x * 4 + this.pos.y * size * 4] = 255;
+		data[this.pos.x * 4 + this.pos.y * size * 4 + 1] = 255;
+		data[this.pos.x * 4 + this.pos.y * size * 4 + 2] = 255;
+	}
 }
