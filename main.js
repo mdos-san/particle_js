@@ -30,10 +30,9 @@ class Particle_2d
 		this.pos = pos;
 		this.vel = vel;
 		this.acc = acc;
-		this.color = "rgb(" +
-		   parseInt(Math.random() * 256) + ", " +
-		   parseInt(Math.random() * 256) + ", " +
-		   parseInt(Math.random() * 256) + ")"
+	 	this.r = parseInt(Math.random() * 255);
+	 	this.g = parseInt(Math.random() * 255);
+	 	this.b = parseInt(Math.random() * 255);
 		this.i = 0;
 	}
 	apply_force(f)
@@ -49,16 +48,16 @@ class Particle_2d
 	display(img)
 	{
 		if (0 < this.pos.x && this.pos.x < 1000 && 0 < this.pos.y && this.pos.y < 1000 )
-		putPixel(img, parseInt(this.pos.x), parseInt(this.pos.y), 255, 0, 0);
+		putPixel(img, parseInt(this.pos.x), parseInt(this.pos.y), 0, 255, 0);
 	}
 }
 
 function putPixel(data, x, y, r, g, b)
 {
 	this.i = (x + y * 1000) * 4;
-	data[this.i + 0] = 0;
-	data[this.i + 1] = 255;
-	data[this.i + 2] = 0;
+	data[this.i + 0] = r;
+	data[this.i + 1] = g;
+	data[this.i + 2] = b;
 	data[this.i + 3] = 255;
 }
 
@@ -73,3 +72,4 @@ function imgClear(imageData)
 	}
 
 }
+
