@@ -1,9 +1,8 @@
 <canvas id="c" width="1000" height="1000" style="border: 1px solid black;"></canvas>
-
 <script src="main.js"></script>
 <script>
 	var canvas = document.getElementById("c");
-	var nbr = 30000;
+	var nbr = 100000;
 	var g = new Vector_2d(canvas.width / 2, canvas.height / 2);
 	var f = new Vector_2d(canvas.width / 2, canvas.height / 2);
 	var ctx = canvas.getContext("2d");
@@ -20,9 +19,7 @@
 	setInterval(main_loop, 16);
 	function main_loop()
 	{
-		ctx.fillStyle = "#000000";
-		ctx.fillRect(0, 0, canvas.width, canvas.height);
-		ctx.fillStyle = "#00ff00";
+		imgClear(imageData);
 		for (var i = 0; i < nbr; ++i)
 		{
 			f.x = g.x - particles[i].pos.x;
@@ -30,8 +27,9 @@
 			particles[i].apply_force(f);
 			particles[i].acc.norm();
 			particles[i].update();
-			particles[i].display(ctx);
+			particles[i].display(imageData.data);
 		}
+		ctx.putImageData(imageData, 0, 0, 0, 0, canvas.width, canvas.height);
 	}
 
 	canvas.addEventListener('click', boom);

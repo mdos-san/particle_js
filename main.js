@@ -34,6 +34,7 @@ class Particle_2d
 		   parseInt(Math.random() * 256) + ", " +
 		   parseInt(Math.random() * 256) + ", " +
 		   parseInt(Math.random() * 256) + ")"
+		this.i = 0;
 	}
 	apply_force(f)
 	{
@@ -45,8 +46,30 @@ class Particle_2d
 		this.pos.add(this.vel);
 		this.acc.mul(0);
 	}
-	display(ctx)
+	display(img)
 	{
-		ctx.fillRect(this.pos.x, this.pos.y, 1, 1);
+		if (0 < this.pos.x && this.pos.x < 1000 && 0 < this.pos.y && this.pos.y < 1000 )
+		putPixel(img, parseInt(this.pos.x), parseInt(this.pos.y), 255, 0, 0);
 	}
+}
+
+function putPixel(data, x, y, r, g, b)
+{
+	this.i = (x + y * 1000) * 4;
+	data[this.i + 0] = 0;
+	data[this.i + 1] = 255;
+	data[this.i + 2] = 0;
+	data[this.i + 3] = 255;
+}
+
+function imgClear(imageData)
+{
+	for (var i = 0; i < imageData.data.length; i += 4)
+	{
+		imageData.data[i + 0] = 0;
+		imageData.data[i + 1] = 0;
+		imageData.data[i + 2] = 0;
+		imageData.data[i + 3] = 255;
+	}
+
 }
