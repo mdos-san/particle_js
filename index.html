@@ -1,0 +1,66 @@
+<canvas id="c" width="1000" height="1000" style="border: 1px solid black;"></canvas>
+
+<script src="main.js"></script>
+<script>
+	var canvas = document.getElementById("c");
+	var nbr = 30000;
+	var g = new Vector_2d(canvas.width / 2, canvas.height / 2);
+	var f = new Vector_2d(canvas.width / 2, canvas.height / 2);
+	var ctx = canvas.getContext("2d");
+	var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+	var particles = new Array(nbr);
+	for (var i = 0; i < nbr; ++i)
+	{
+		particles[i] = new Particle_2d(
+			new Vector_2d(Math.random() * canvas.width, Math.random() * canvas.height),
+			new Vector_2d(0, 0),
+			new Vector_2d(0, 0)
+		);
+	}
+	setInterval(main_loop, 16);
+	function main_loop()
+	{
+		ctx.fillStyle = "#000000";
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = "#00ff00";
+		for (var i = 0; i < nbr; ++i)
+		{
+			f.x = g.x - particles[i].pos.x;
+			f.y = g.y - particles[i].pos.y;
+			particles[i].apply_force(f);
+			particles[i].acc.norm();
+			particles[i].update();
+			particles[i].display(ctx);
+		}
+	}
+
+	canvas.addEventListener('click', boom);
+	function boom()
+	{
+		for (var i = 0; i < nbr; ++i)
+		{
+			particles[i].vel.x = Math.random() * 50 - 25;
+			particles[i].vel.y = Math.random() * 50 - 25;
+		}
+	}
+
+	canvas.addEventListener('mousemove', move);
+	function move(e)
+	{
+		g.x = e.clientX;
+		g.y = e.clientY;
+	}
+	
+	document.addEventListener('keydown', merge);
+	function merge(e)
+	{
+		if (e.code == "Space")
+		{
+			for (var i = 0; i < nbr; ++i)
+			{
+				particles[i].vel.mul(0.9);
+			}
+		}
+	}
+
+</script>
