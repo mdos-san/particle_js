@@ -47,7 +47,6 @@ class Particle_2d
 	}
 	display(ctx)
 	{
-		ctx.fillStyle = "#ffffff";
-		ctx.fillRect(this.pos.x, this.pos.y, 3, 3);
+		ctx.fillRect(this.pos.x, this.pos.y, 1, 1);
 	}
 }

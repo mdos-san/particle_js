@@ -3,7 +3,7 @@
 <script src="main.js"></script>
 <script>
 	var canvas = document.getElementById("c");
-	var nbr = 10000;
+	var nbr = 30000;
 	var g = new Vector_2d(canvas.width / 2, canvas.height / 2);
 	var f = new Vector_2d(canvas.width / 2, canvas.height / 2);
 	var ctx = canvas.getContext("2d");
@@ -22,6 +22,7 @@
 	{
 		ctx.fillStyle = "#000000";
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = "#00ff00";
 		for (var i = 0; i < nbr; ++i)
 		{
 			f.x = g.x - particles[i].pos.x;
